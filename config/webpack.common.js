@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { resolve } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   entry: ['./src/index.ts'],
@@ -29,12 +29,17 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'thread-loader',
-          },
-          {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
+            },
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: ['\\.vue$'],
+              happyPackMode: false,
             },
           },
         ],
@@ -42,7 +47,6 @@ module.exports = {
     ],
   },
   plugins: [
-    // 请确保引入这个插件来施展魔法
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
@@ -71,7 +75,16 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue', '.json', '.css', '.less'],
+    extensions: [
+      '.js',
+      '.ts',
+      '.jsx',
+      '.tsx',
+      '.vue',
+      '.json',
+      '.css',
+      '.less',
+    ],
     alias: {
       '@': resolve('src'),
     },
