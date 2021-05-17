@@ -1,7 +1,5 @@
 module.exports = {
   presets: [
-    // 预设，可以理解为一系列封装好的插件的集合
-    // '@vue/babel-preset-jsx', // 让vue支持jsx跟tsx，但是vue3不能使用这个预设，需使用@vue/babel-plugin-jsx这个插件
     [
       '@babel/preset-env', // 添加preset-env预设做语法转换，preset-env能将最新的语法转换为ecmascript5的写法
       {
@@ -23,7 +21,7 @@ module.exports = {
     ],
     '@babel/plugin-proposal-class-properties', // 类属性插件
     [
-      '@babel/plugin-transform-runtime', // 利用runtime做helpers跟regenerator设置
+      '@babel/plugin-transform-runtime',
       {
         corejs: false,
         helpers: true,
