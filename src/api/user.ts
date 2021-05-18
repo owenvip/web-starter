@@ -7,7 +7,7 @@ import { authHost } from '@/config'
  * @param {string} userId
  * @returns {Promise<User>}
  */
-export function fetchUserInfo(userId) {
+export function fetchUserInfo(userId: string) {
   return request.get(`${authHost}/auth/api/sysmgr/user/info`, {
     query: { userId },
   })

@@ -1,16 +1,29 @@
 import { defineComponent } from 'vue'
 import md5 from 'blueimp-md5'
-import { MD5_SALT, DOMAIN_NUMBER } from '@/config'
-import { Button, Form, Input } from 'ant-design-vue'
+import { MD5_SALT } from '@/config'
+import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import styles from './index.module.less'
 import { mapActions, mapState } from 'vuex'
+
+const rules = {
+  account: [
+    { required: true, message: '请输入手机号', trigger: 'blur' },
+    {
+      pattern: /^1(\d){10}$/,
+      message: '请输入正确的手机号码',
+      trigger: 'blur',
+    },
+  ],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+}
+
 const LoginForm = defineComponent({
   data: function () {
     return {
       loading: false,
       formData: {
-        account: undefined,
-        password: undefined,
+        account: '',
+        password: '',
       },
     }
   },
@@ -34,67 +47,29 @@ const LoginForm = defineComponent({
       const data = {
         account: this.formData.account,
         password: md5(this.formData.password + MD5_SALT).toString(),
-        domainNumber: DOMAIN_NUMBER,
       }
       await this.userLogin(data)
       this.loading = false
     },
-    handlePasswordChange(e) {
-      this.formData.password = e.target.value
-    },
-    handleAccountChange(e) {
-      this.formData.account = e.target.value
-    },
   },
   render() {
     return (
-      <Form
-        class={styles.loginForm}
-        model={this.formData}
-        onFinish={this.handleFormFinish}
-      >
-        <Form.Item
-          name={['account']}
-          rules={[
-            {
-              required: true,
-              whitespace: false,
-              message: '请输入手机号码',
-            },
-            {
-              pattern: /^1(\d){10}$/,
-              message: '请输入正确的手机号码',
-            },
-          ]}
-          onChange={this.handleAccountChange}
-          value={this.formData.account}
-        >
-          <Input size="large" placeholder="手机号码" />
-        </Form.Item>
-        <Form.Item
-          name={['password']}
-          rules={[
-            {
-              required: true,
-              whitespace: false,
-              message: '请输入密码',
-            },
-          ]}
-          onChange={this.handlePasswordChange}
-          value={this.formData.password}
-        >
-          <Input.Password size="large" key={name} placeholder="密码" />
-        </Form.Item>
-        <Button
+      <ElForm class={styles.loginForm} rules={rules} model={this.formData}>
+        <ElFormItem prop="account">
+          <ElInput placeholder="手机号码" />
+        </ElFormItem>
+        <ElFormItem prop="password">
+          <ElInput show-password placeholder="密码" />
+        </ElFormItem>
+        <ElButton
           size="large"
           loading={this.loading}
-          block
-          htmlType="submit"
           type="primary"
+          onClick={this.handleFormFinish}
         >
           登录
-        </Button>
-      </Form>
+        </ElButton>
+      </ElForm>
     )
   },
 })

@@ -3,7 +3,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/home'),
-    meta: {
+    props: {
       auth: true,
       icon: 'el-icon-s-home',
       title: 'Dashboard',
@@ -13,7 +13,7 @@ const routes = [
     path: '/demo',
     name: 'Demo',
     component: () => import('@/views/demo'),
-    meta: {
+    props: {
       auth: true,
       title: '示例',
       icon: 'el-icon-menu',
