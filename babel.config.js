@@ -30,5 +30,14 @@ module.exports = {
         absoluteRuntime: './node_modules',
       },
     ],
+    [
+      "import",
+      {
+        libraryName: 'element-plus',
+        customStyleName: (name) => {
+          return `element-plus/lib/theme-chalk/${name}.css`;
+        },
+      },
+    ],
   ],
 }

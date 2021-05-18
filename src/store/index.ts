@@ -1,26 +1,14 @@
-import 'es6-promise/auto'
-import { createStore } from 'vuex'
-
+import { createStore, createLogger } from 'vuex'
+import auth from './modules/auth'
+import user from './modules/user'
+const plugins = []
+if (process.env.NODE_ENV === 'development') {
+  plugins.push(createLogger())
+}
 export default createStore({
-  state: {
-    count: 0,
-    suporka: 'suporka',
+  modules: {
+    auth,
+    user,
   },
-  mutations: {
-    increment(state) {
-      state.count++
-    },
-    decrement(state) {
-      state.count--
-    },
-  },
-  actions: {
-    countUp(ctx) {
-      ctx.commit('increment')
-    },
-    countDown(ctx) {
-      ctx.commit('decrement')
-    },
-  },
-  modules: {},
+  plugins,
 })
