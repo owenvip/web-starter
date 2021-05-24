@@ -1,10 +1,7 @@
-@import '@/styles/theme/vars.less';
-
 @logo-color: #f46c64;
 
 .login {
   height: 100%;
-  background-image: url('~@/assets/images/login_bg.png');
   background-size: 100% 100%;
   display: flex;
   justify-content: center;
@@ -15,7 +12,6 @@
     height: 580px;
     display: flex;
     box-shadow: 17px 48px 162px 0 rgba(0, 0, 0, 0.06);
-    border-radius: @border-radius-base;
     overflow: hidden;
 
     & > div {
@@ -24,7 +20,7 @@
   }
 
   &-logo {
-    background-image: url('~@/assets/images/login_bg_block.png');
+    background-image: url('~@/assets/logo.png');
     background-size: 100% 100%;
     display: flex;
     justify-content: center;
@@ -39,7 +35,6 @@
     width: 500px;
     padding: 20px;
     background-color: #fff;
-    box-shadow: @box-shadow-base;
     display: flex;
     flex-direction: column;
     align-items: center;

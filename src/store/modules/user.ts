@@ -1,14 +1,20 @@
+import { MutationTree, ActionTree } from 'vuex'
 import { fetchUserInfo } from '@/api/user'
-const state = {
+
+type State = {
+  [key: string]: any
+}
+
+const state: State = {
   users: {},
 }
-const mutations = {
+const mutations: MutationTree<State> = {
   setUser: (state, payload) => {
     state.users[payload.id] = payload
   },
 }
 const getters = {}
-const actions = {
+const actions: ActionTree<State, State> = {
   fetchUserInfo: async ({ commit }, userId) => {
     try {
       const user = await fetchUserInfo(userId)

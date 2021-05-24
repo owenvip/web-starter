@@ -1,4 +1,4 @@
-import Request from '@otools/request'
+import Request, { Res } from '@otools/request'
 import isNil from 'lodash/isNil'
 import { appHost } from '@/config'
 import auth from './auth'
@@ -28,7 +28,7 @@ const request = new Request({
     }
     return req
   },
-  afterRequest: (res) => {
+  afterRequest: (res: Res) => {
     const { data, status } = res
     if (status === 401 || status === 403) {
       throw res
@@ -38,7 +38,6 @@ const request = new Request({
       if (!data) {
         return res
       }
-      // 兼容注册登录
       if (!isNil(data.code)) {
         if (+data.code === 0 || +data.code === 200) {
           res.data = data.data

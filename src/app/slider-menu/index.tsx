@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { ElSlider, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
+import { ElAside, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
 import { RouteRecordNormalized } from 'vue-router'
 import flattenRoutes from '@/utils/flatten-routes'
 
@@ -9,8 +9,8 @@ function getKeyByPath(path: [] | string) {
 function renderMenuItems(routes: RouteRecordNormalized[] = []) {
   return routes
     .map((route) => {
-      const { path, props = {}, children = [] } = route
-      const { visible = true, title, icon } = props
+      const { path, meta, children = [] } = route
+      const { visible = true, title, icon } = meta
       const key = getKeyByPath(path)
       // @ts-ignore
       const visibleChildRoutes: any = children.filter(({ props = {} }) => {
@@ -40,15 +40,16 @@ function renderMenuItems(routes: RouteRecordNormalized[] = []) {
     .filter((v) => v)
 }
 const SliderMenu = defineComponent({
+  props: ['width'],
   render() {
     const pathname = this.$router.currentRoute.value.path
     const routes = this.$router.getRoutes()
     // const history = useHistory()
     const flattenedRoutes = flattenRoutes(routes)
     const menu = renderMenuItems(routes)
-    const handleMenuItemClick = ({ index }: any) => {
-      if (pathname !== index) {
-        this.$router.push(index)
+    const handleMenuItemClick = (path: string) => {
+      if (pathname !== path) {
+        this.$router.push(path)
       }
     }
     const matchedKeys = flattenedRoutes
@@ -57,11 +58,11 @@ const SliderMenu = defineComponent({
       })
       .filter((v) => v)
     return (
-      <ElSlider>
-        <ElMenu default-active={matchedKeys} onSelect={handleMenuItemClick}>
+      <ElAside {...this.$props}>
+        <ElMenu default-active={matchedKeys[0]} onSelect={handleMenuItemClick}>
           {menu}
         </ElMenu>
-      </ElSlider>
+      </ElAside>
     )
   },
 })

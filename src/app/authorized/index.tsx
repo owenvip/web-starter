@@ -11,7 +11,7 @@ const Authorized = defineComponent({
       const { meta = {} } = route
       const { auth = true } = meta
       if (!isLogin.value && auth) {
-        router.replace('/login')
+        // router.replace('/login')
       }
     })
     return () => {

@@ -6,10 +6,10 @@ const baseRoutes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/app/login'),
-    props: {
+    meta: {
       auth: false,
-      header: null,
-      slider: null,
+      hideHeader: true,
+      hideSlider: true,
       visible: false,
     },
   },
