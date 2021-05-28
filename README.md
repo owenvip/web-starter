@@ -1,4 +1,4 @@
-# vue-demo
+# react-demo
 ## quickstart
 
 ```shell

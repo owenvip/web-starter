@@ -1,20 +1,27 @@
-import { defineComponent } from 'vue'
-import { ElContainer, ElHeader, ElMain, ElFooter } from 'element-plus'
-import SliderMenu from '../slider-menu/index'
-import styles from './index.module.less'
+import React, { FC } from 'react'
+import { Layout } from 'antd'
+import SliderMenu from '../slider-menu'
 
-export default defineComponent({
-  render() {
-    const { hideHeader, hideSlider } = this.$route.meta
-    return (
-      <ElContainer>
-        {hideHeader ?? <ElHeader class={styles.header} />}
-        <ElContainer>
-          {hideSlider ?? <SliderMenu />}
-          <ElMain>{this.$slots.default && this.$slots.default()}</ElMain>
-        </ElContainer>
-        <ElFooter />
-      </ElContainer>
-    )
-  },
-})
+const { Header, Footer, Content } = Layout;
+
+interface Props {
+  sliderWidth?: number
+}
+
+const BaseLayout: FC<Props> = ({ children, sliderWidth = 220 }) =>
+(
+  <Layout >
+    <Header>Header</Header>
+    <Layout>
+      <SliderMenu
+        width={sliderWidth}
+      />
+      <Content>
+        {children}
+      </Content>
+    </Layout>
+    <Footer>Footer</Footer>
+  </Layout>
+)
+
+export default BaseLayout

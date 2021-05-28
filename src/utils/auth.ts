@@ -22,7 +22,6 @@ export class Auth {
 
   constructor() {
     const { token, isSSO } = getSearchParams<AuthParams>()
-
     if (token) {
       // 处理以下三种情况
       // 1. token=Bearer {token}
@@ -39,7 +38,6 @@ export class Auth {
     }
 
     const temp = localStorage.getItem(Auth.TOKEN_KEY) || ''
-
     this.parseToken(temp)
 
     if (this.token) {

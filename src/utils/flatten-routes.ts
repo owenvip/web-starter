@@ -1,16 +1,16 @@
-import { RouteRecordRaw } from 'vue-router'
+import { RouteConfig } from '@/interfaces/route'
 
 const flattenRoutes = (
-  routes: RouteRecordRaw[],
-  store: RouteRecordRaw[] = []
-) => {
+  routes: RouteConfig[],
+  flattenedRoutes: RouteConfig[] = []
+): RouteConfig[] => {
   routes.forEach((route) => {
-    store.push(route)
-    if (Array.isArray(route.children)) {
-      flattenRoutes(route.children, store)
+    flattenedRoutes.push(route)
+    if (Array.isArray(route.routes)) {
+      flattenRoutes(route.routes, flattenedRoutes)
     }
   })
-  return store
+  return flattenedRoutes
 }
 
 export default flattenRoutes

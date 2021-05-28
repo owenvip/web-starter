@@ -1,9 +1,12 @@
-import Request, { Res } from '@otools/request'
+import Request, { Res } from '@cisdi/request'
+import { useRequest } from '@cisdi/hooks'
 import isNil from 'lodash/isNil'
 import { appHost } from '@/config'
 import auth from './auth'
+
 const NO_AUTH_ERROR = new Error('登录失效，请重新登录')
 const UNKNOWN_ERROR = new Error('未知错误')
+
 const request = new Request({
   baseURL: appHost,
   headers: {
@@ -20,7 +23,7 @@ const request = new Request({
       req.headers = headers
     }
     if (req.headers) {
-      Object.keys(req.headers).map((key) => {
+      Object.keys(req.headers).forEach((key) => {
         if (req.headers && !req.headers[key]) {
           delete req.headers[key]
         }
@@ -28,7 +31,7 @@ const request = new Request({
     }
     return req
   },
-  afterRequest: (res: Res) => {
+  afterRequest: (res: Res<any>) => {
     const { data, status } = res
     if (status === 401 || status === 403) {
       throw res
@@ -38,6 +41,7 @@ const request = new Request({
       if (!data) {
         return res
       }
+      // 兼容注册登录
       if (!isNil(data.code)) {
         if (+data.code === 0 || +data.code === 200) {
           res.data = data.data
@@ -57,4 +61,32 @@ const request = new Request({
     return res
   },
 })
+
+const hookRequest = new Request({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  beforeRequest: async (req) => {
+    const { headers = {} } = req
+    if (typeof headers.Authorization === 'undefined') {
+      if (!auth.isLogin) {
+        throw NO_AUTH_ERROR
+      }
+      const authorization = auth.getAuthorization()
+      headers.Authorization = authorization
+      req.headers = headers
+    }
+    if (req.headers) {
+      Object.keys(req.headers).forEach((key) => {
+        if (req.headers && !req.headers[key]) {
+          delete req.headers[key]
+        }
+      })
+    }
+    return req
+  },
+})
+
+useRequest.request = hookRequest.request
+
 export default request

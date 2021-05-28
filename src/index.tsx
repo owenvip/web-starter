@@ -1,6 +1,5 @@
-import { createApp } from 'vue'
-import router from './router'
-import store from './store'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import App from './app'
 
 if (process.env.NODE_ENV === 'production') {
@@ -11,4 +10,4 @@ if (process.env.NODE_ENV === 'production') {
   }
 }
 
-createApp(App).use(store).use(router).mount('#app')
+ReactDOM.render(<App />, document.getElementById('app'))

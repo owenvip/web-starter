@@ -1,16 +1,27 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import React, { lazy } from 'react'
+import { DashboardOutlined, DatabaseOutlined } from '@ant-design/icons'
+import { RouteConfig } from '@/interfaces/route'
 import routes from './routes'
 
-const baseRoutes = [
+const baseRoutes: RouteConfig[] = [
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/app/login'),
+    path: '/',
+    component: lazy(() => import('@/pages/home')),
+    exact: true,
     meta: {
-      auth: false,
-      hideHeader: true,
-      hideSlider: true,
-      visible: false,
+      auth: true,
+      icon: <DashboardOutlined />,
+      title: 'Dashboard',
+    },
+  },
+  {
+    path: '/demo',
+    component: lazy(() => import('@/pages/demo')),
+    exact: true,
+    meta: {
+      auth: true,
+      title: '示例',
+      icon: <DatabaseOutlined />,
     },
   },
 ]
