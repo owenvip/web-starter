@@ -1,5 +1,4 @@
-import Request, { Res } from '@cisdi/request'
-import { useRequest } from '@cisdi/hooks'
+import Request, { Res } from '@otools/request'
 import isNil from 'lodash/isNil'
 import { appHost } from '@/config'
 import auth from './auth'
@@ -61,32 +60,5 @@ const request = new Request({
     return res
   },
 })
-
-const hookRequest = new Request({
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  beforeRequest: async (req) => {
-    const { headers = {} } = req
-    if (typeof headers.Authorization === 'undefined') {
-      if (!auth.isLogin) {
-        throw NO_AUTH_ERROR
-      }
-      const authorization = auth.getAuthorization()
-      headers.Authorization = authorization
-      req.headers = headers
-    }
-    if (req.headers) {
-      Object.keys(req.headers).forEach((key) => {
-        if (req.headers && !req.headers[key]) {
-          delete req.headers[key]
-        }
-      })
-    }
-    return req
-  },
-})
-
-useRequest.request = hookRequest.request
 
 export default request

@@ -3,9 +3,8 @@ import { RouteProps } from 'react-router'
 
 export interface RouteMeta {
   auth?: boolean
-  header?: ComponentType | null
-  footer?: ComponentType | null
-  sider?: ComponentType | null
+  hideHeader?: boolean
+  hideSlider?: boolean
   name?: string
   title?: ReactNode
   icon?: ReactNode
@@ -15,4 +14,5 @@ export interface RouteMeta {
 export interface RouteConfig extends RouteProps {
   meta?: RouteMeta
   routes?: RouteConfig[]
+  path?: string
 }

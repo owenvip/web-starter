@@ -1,12 +1,11 @@
 import React, { lazy } from 'react'
 import { DashboardOutlined, DatabaseOutlined } from '@ant-design/icons'
 import { RouteConfig } from '@/interfaces/route'
-import routes from './routes'
 
-const baseRoutes: RouteConfig[] = [
+const routes: RouteConfig[] = [
   {
     path: '/',
-    component: lazy(() => import('@/pages/home')),
+    component: lazy(() => import('@/views/home')),
     exact: true,
     meta: {
       auth: true,
@@ -16,7 +15,7 @@ const baseRoutes: RouteConfig[] = [
   },
   {
     path: '/demo',
-    component: lazy(() => import('@/pages/demo')),
+    component: lazy(() => import('@/views/demo')),
     exact: true,
     meta: {
       auth: true,
@@ -25,8 +24,5 @@ const baseRoutes: RouteConfig[] = [
     },
   },
 ]
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes: [...baseRoutes, ...routes],
-})
-export default router
+
+export default routes

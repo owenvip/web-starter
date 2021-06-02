@@ -1,12 +1,10 @@
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-export default defineComponent({
-  name: 'Home',
-  render() {
-    return (
-      <div>
-        <ElButton type="primary">Home</ElButton>
-      </div>
-    )
-  },
-})
+import React from 'react'
+import { Button } from 'antd'
+
+const Home = () => (
+  <div>
+    <Button type="primary">Home</Button>
+  </div>
+)
+
+export default Home

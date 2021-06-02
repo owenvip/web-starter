@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx'
 
-export class UserStore {
+export class CounterStore {
   @observable
   value: number = 0
 

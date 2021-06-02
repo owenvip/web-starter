@@ -13,9 +13,9 @@ const Authorized: FC<Props> = ({ children, route }) => {
   useEffect(() => {
     const { meta = {} } = route
     const { auth = true } = meta
-    if (auth && !isLogin) {
-      history.replace('/login')
-    }
+    // if (auth && !isLogin) {
+    //   history.replace('/login')
+    // }
   }, [isLogin, history, route])
   return <>{children}</>
 }

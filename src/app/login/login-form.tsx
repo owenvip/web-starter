@@ -1,76 +1,74 @@
-import { defineComponent } from 'vue'
+import React, { FC, useCallback, useState, useEffect } from 'react'
 import md5 from 'blueimp-md5'
 import { MD5_SALT } from '@/config'
-import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
-import styles from './index.module.less'
-import { mapActions, mapState } from 'vuex'
+import { Button, Form, Input } from 'antd'
+import useAuth from '@/hooks/use-auth'
+import { useHistory } from 'react-router'
 
-const rules = {
-  account: [
-    { required: true, message: '请输入手机号', trigger: 'blur' },
-    {
-      pattern: /^1(\d){10}$/,
-      message: '请输入正确的手机号码',
-      trigger: 'blur',
+const LoginForm: FC = () => {
+  const history = useHistory()
+  const [form] = Form.useForm()
+  const { userLogin, isLogin } = useAuth()
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = useCallback(
+    async (data) => {
+      data.password = md5(data.password + MD5_SALT).toString()
+      setLoading(true)
+      const res = await userLogin(data)
+      if (!res) {
+        // 只有在未成功登录的情况下需要重置状态
+        setLoading(false)
+      }
     },
-  ],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+    [userLogin]
+  )
+
+  useEffect(() => {
+    if (isLogin) {
+      history.replace('/')
+    }
+  }, [isLogin, history])
+
+  return (
+    <Form
+      style={{ width: 360 }}
+      form={form}
+      initialValues={{
+        countryCode: '+86',
+      }}
+      size="large"
+      onFinish={handleSubmit}
+    >
+      <Form.Item
+        name={['account']}
+        rules={[
+          {
+            required: true,
+            whitespace: false,
+            message: '请输入用户名/手机号',
+          },
+        ]}
+      >
+        <Input placeholder="用户名/手机号码" />
+      </Form.Item>
+      <Form.Item
+        name={['password']}
+        rules={[
+          {
+            required: true,
+            whitespace: false,
+            message: '请输入密码',
+          },
+        ]}
+      >
+        <Input.Password placeholder="密码" />
+      </Form.Item>
+      <Button loading={loading} block htmlType="submit" type="primary">
+        登录
+      </Button>
+    </Form>
+  )
 }
 
-const LoginForm = defineComponent({
-  data: function () {
-    return {
-      loading: false,
-      formData: {
-        account: '',
-        password: '',
-      },
-    }
-  },
-  computed: mapState('auth', ['isLogin']),
-  watch: {
-    isLogin(val) {
-      if (val) {
-        this.$router.replace('/')
-      }
-    },
-  },
-  beforeMount() {
-    if (this.isLogin) {
-      this.$router.replace('/')
-    }
-  },
-  methods: {
-    ...mapActions('auth', ['userLogin']),
-    async handleFormFinish() {
-      this.loading = true
-      const data = {
-        account: this.formData.account,
-        password: md5(this.formData.password + MD5_SALT).toString(),
-      }
-      await this.userLogin(data)
-      this.loading = false
-    },
-  },
-  render() {
-    return (
-      <ElForm class={styles.loginForm} rules={rules} model={this.formData}>
-        <ElFormItem prop="account">
-          <ElInput placeholder="手机号码" />
-        </ElFormItem>
-        <ElFormItem prop="password">
-          <ElInput show-password placeholder="密码" />
-        </ElFormItem>
-        <ElButton
-          size="large"
-          loading={this.loading}
-          type="primary"
-          onClick={this.handleFormFinish}
-        >
-          登录
-        </ElButton>
-      </ElForm>
-    )
-  },
-})
 export default LoginForm

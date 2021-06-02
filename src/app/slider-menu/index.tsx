@@ -1,37 +1,44 @@
-import { defineComponent } from 'vue'
-import { ElAside, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
-import { RouteRecordNormalized } from 'vue-router'
-import flattenRoutes from '@/utils/flatten-routes'
+import React, { FC, useState, useCallback, useMemo, ReactNode } from 'react'
+import { useLocation, useHistory, matchPath } from 'react-router-dom'
+import { Layout, Menu } from 'antd'
+import { RouteConfig } from '@/interfaces/route'
+import useRoutes from '@/hooks/use-routes'
+import useFlattenedRoutes from '@/hooks/use-flattened-routes'
 
-function getKeyByPath(path: [] | string) {
-  return Array.isArray(path) && path.length ? path[0] : path
+const { Sider } = Layout
+const { SubMenu, Item: MenuItem } = Menu
+
+interface Props {
+  width?: number
 }
-function renderMenuItems(routes: RouteRecordNormalized[] = []) {
+
+function getKeyByPath(path?: string | string[]) {
+  return Array.isArray(path) ? path[0] : path
+}
+
+function renderMenuItems(routes: RouteConfig[] = []): ReactNode[] {
   return routes
     .map((route) => {
-      const { path, meta, children = [] } = route
+      const { path, meta = {}, routes: childRoutes = [] } = route
       const { visible = true, title, icon } = meta
       const key = getKeyByPath(path)
-      // @ts-ignore
-      const visibleChildRoutes: any = children.filter(({ props = {} }) => {
-        const { visible = true } = props
+      const visibleChildRoutes = childRoutes.filter(({ meta = {} }) => {
+        const { visible = true } = meta
         return visible
       })
       if (visible) {
-        const el = (
-          <>
-            <i class={icon} />
-            <span>{title}</span>
-          </>
-        )
         if (visibleChildRoutes.length) {
           return (
-            <ElSubmenu index={key} title={el}>
+            <SubMenu key={key} icon={icon} title={title}>
               {renderMenuItems(visibleChildRoutes)}
-            </ElSubmenu>
+            </SubMenu>
           )
         } else {
-          return <ElMenuItem index={key}>{el}</ElMenuItem>
+          return (
+            <MenuItem icon={icon} key={key} title={title}>
+              {title}
+            </MenuItem>
+          )
         }
       } else {
         return null
@@ -39,31 +46,55 @@ function renderMenuItems(routes: RouteRecordNormalized[] = []) {
     })
     .filter((v) => v)
 }
-const SliderMenu = defineComponent({
-  props: ['width'],
-  render() {
-    const pathname = this.$router.currentRoute.value.path
-    const routes = this.$router.getRoutes()
-    // const history = useHistory()
-    const flattenedRoutes = flattenRoutes(routes)
-    const menu = renderMenuItems(routes)
-    const handleMenuItemClick = (path: string) => {
-      if (pathname !== path) {
-        this.$router.push(path)
+
+const SliderMenu: FC<Props> = ({ width = 220 }) => {
+  const [collapsed, setCollapsed] = useState(false)
+  const routes = useRoutes()
+  const { pathname } = useLocation()
+  const history = useHistory()
+
+  const flattenedRoutes = useFlattenedRoutes()
+
+  const menu = useMemo(() => renderMenuItems(routes), [routes])
+
+  const handleMenuItemClick = useCallback(
+    ({ key }) => {
+      if (pathname !== key) {
+        history.push(key)
       }
-    }
-    const matchedKeys = flattenedRoutes
+    },
+    [history, pathname]
+  )
+
+  const matchedKeys = useMemo(() => {
+    return flattenedRoutes
       .map((route) => {
-        return pathname === route.path ? getKeyByPath(route.path) : undefined
+        const match = matchPath(pathname, route)
+        return match ? getKeyByPath(route.path) : undefined
       })
       .filter((v) => v)
-    return (
-      <ElAside {...this.$props}>
-        <ElMenu default-active={matchedKeys[0]} onSelect={handleMenuItemClick}>
-          {menu}
-        </ElMenu>
-      </ElAside>
-    )
-  },
-})
+  }, [flattenedRoutes, pathname]) as string[]
+
+  const handleCollapsedChange = useCallback((collapsed) => {
+    setCollapsed(collapsed)
+  }, [])
+  return (
+    <Sider
+      collapsible
+      defaultCollapsed={collapsed}
+      width={width}
+      onCollapse={handleCollapsedChange}
+    >
+      <Menu
+        mode="inline"
+        defaultOpenKeys={matchedKeys}
+        selectedKeys={matchedKeys}
+        onClick={handleMenuItemClick}
+      >
+        {menu}
+      </Menu>
+    </Sider>
+  )
+}
+
 export default SliderMenu

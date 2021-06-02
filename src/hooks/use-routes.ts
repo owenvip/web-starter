@@ -1,3 +1,3 @@
-import routes from '@/app/routes'
+import routes from '@/router'
 
 export default () => routes || []
