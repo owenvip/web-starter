@@ -1,16 +1,17 @@
 import React from 'react'
 import { useStore } from '@/store'
 import { observer } from 'mobx-react-lite'
-import { Button } from 'antd'
+import { Button, Badge } from 'antd'
 
-const Demo = observer(() => {
+const Demo = () => {
   const store = useStore()
-  console.log(11, store)
   return (
-    <div>
-      <Button danger>Demo</Button>
-    </div>
+    <Badge count={store.counter.count}>
+      <Button danger onClick={store.counter.increase}>
+        demo
+      </Button>
+    </Badge>
   )
-})
+}
 
-export default Demo
+export default observer(Demo)

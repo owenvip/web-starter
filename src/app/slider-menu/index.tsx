@@ -87,6 +87,7 @@ const SliderMenu: FC<Props> = ({ width = 220 }) => {
     >
       <Menu
         mode="inline"
+        theme="dark"
         defaultOpenKeys={matchedKeys}
         selectedKeys={matchedKeys}
         onClick={handleMenuItemClick}

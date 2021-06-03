@@ -1,6 +1,6 @@
 import { useLocalObservable } from 'mobx-react-lite'
 
-const User = () => {
+const counter = () => {
   const store = useLocalObservable(() => ({
     count: 1,
     get double() {
@@ -16,4 +16,4 @@ const User = () => {
   return store
 }
 
-export default User
+export default counter
