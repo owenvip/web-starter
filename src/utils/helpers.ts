@@ -1,27 +1,4 @@
 import { parse, ParsedQs } from 'qs'
-import { TokenPayload } from '@/interfaces/token'
-
-/**
- * 解析 JWT Token
- *
- * @export
- * @param {string} token access token
- * @returns {(TokenPayload | undefined)} payload
- */
-export function decodeJWTToken(token: string): TokenPayload | undefined {
-  try {
-    const base64Url = token.split('.')[1]
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join('')
-    )
-
-    return JSON.parse(jsonPayload)
-  } catch (error) {}
-}
 
 /**
  * 获取 search 参数

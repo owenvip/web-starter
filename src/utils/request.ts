@@ -17,7 +17,7 @@ const request = new Request({
       if (!auth.isLogin) {
         throw NO_AUTH_ERROR
       }
-      const authorization = auth.getAuthorization()
+      const authorization = auth.getToken()
       headers.Authorization = authorization
       req.headers = headers
     }
@@ -40,7 +40,6 @@ const request = new Request({
       if (!data) {
         return res
       }
-      // 兼容注册登录
       if (!isNil(data.code)) {
         if (+data.code === 0 || +data.code === 200) {
           res.data = data.data

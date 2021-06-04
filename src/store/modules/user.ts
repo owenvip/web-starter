@@ -1,19 +1,20 @@
 import { useLocalObservable } from 'mobx-react-lite'
+import { runInAction } from 'mobx'
+import { fetchUserInfo } from '@/api/user'
 
-const User = () => {
+const Auth = () => {
   const store = useLocalObservable(() => ({
-    count: 1,
-    get double() {
-      return this.count * 2
-    },
-    increase() {
-      this.count += 1
-    },
-    decrease() {
-      this.count -= 1
+    user: {},
+    async fetchUser(userId: string) {
+      try {
+        const user = await fetchUserInfo(userId)
+        runInAction(() => {
+          this.user = user
+        })
+      } catch (error) {}
     },
   }))
   return store
 }
 
-export default User
+export default Auth
