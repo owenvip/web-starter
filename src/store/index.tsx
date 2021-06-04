@@ -1,5 +1,6 @@
 import React, { createContext, useContext, ReactChild } from 'react'
 import { observer } from 'mobx-react-lite'
+import auth from './modules/auth'
 import user from './modules/user'
 import counter from './modules/counter'
 
@@ -11,6 +12,7 @@ export const StoreProvider = observer(
       <StoreContext.Provider
         value={Object.freeze({
           user: user(),
+          auth: auth(),
           counter: counter(),
         })}
       >

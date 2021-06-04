@@ -3,3 +3,8 @@ export interface User {
   id: string
   name: string
 }
+
+export interface LoginParam {
+  account: string
+  password: string
+}

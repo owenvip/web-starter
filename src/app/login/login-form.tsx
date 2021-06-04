@@ -1,14 +1,15 @@
 import React, { FC, useCallback, useState, useEffect } from 'react'
 import md5 from 'blueimp-md5'
 import { MD5_SALT } from '@/config'
+import { useStore } from '@/store'
 import { Button, Form, Input } from 'antd'
-import useAuth from '@/hooks/use-auth'
 import { useHistory } from 'react-router'
 
 const LoginForm: FC = () => {
+  const store = useStore()
   const history = useHistory()
   const [form] = Form.useForm()
-  const { userLogin, isLogin } = useAuth()
+  const { userLogin, isLogin } = store.auth
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = useCallback(
