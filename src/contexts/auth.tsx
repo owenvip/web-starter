@@ -3,7 +3,7 @@ import noop from 'lodash/noop'
 import auth from '@/utils/auth'
 import { userLogin } from '@/api/auth'
 import { message } from 'antd'
-import { LoginParam } from '@/interfaces'
+import { LoginParam } from '@/interfaces/user'
 
 interface AuthContextValue {
   isLogin: boolean

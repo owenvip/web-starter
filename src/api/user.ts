@@ -10,7 +10,7 @@ import { User } from '@/interfaces/user'
  * @returns {Promise<User>}
  */
 export function fetchUserInfo(userId: string): Promise<User> {
-  return request.get(`${authHost}/user.json`, {
+  return request.get(`${authHost}/api/user`, {
     query: { userId },
   })
 }

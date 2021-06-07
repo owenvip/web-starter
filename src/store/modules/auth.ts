@@ -11,7 +11,7 @@ const Auth = () => {
       auth.setToken('')
       this.isLogin = false
     },
-    async fetchAuth(params: LoginParam) {
+    async userLogin(params: LoginParam) {
       try {
         const { token } = await userLogin(params)
         auth.setToken(token)
@@ -19,6 +19,7 @@ const Auth = () => {
           this.isLogin = true
         })
       } catch (error) {
+        console.error(error)
         this.userLogout()
       }
     },

@@ -42,13 +42,13 @@ export const authHost = (() => {
   if (process.env.AUTH_HOST) {
     return process.env.AUTH_HOST
   } else if (APP_ENV === DEV) {
-    return 'http://localhost'
+    return location.origin
   } else if (APP_ENV === TEST) {
-    return 'http://localhost'
+    return location.origin
   } else if (APP_ENV === PRE) {
-    return 'http://localhost'
+    return location.origin
   } else {
-    return 'http://localhost'
+    return location.origin
   }
 })()
 /**
@@ -60,13 +60,13 @@ export const appHost = (() => {
   if (process.env.APP_HOST) {
     return process.env.APP_HOST
   } else if (APP_ENV === DEV) {
-    return 'http://localhost'
+    return location.origin
   } else if (APP_ENV === TEST) {
-    return 'http://localhost'
+    return location.origin
   } else if (APP_ENV === PRE) {
-    return 'http://localhost'
+    return location.origin
   } else {
-    return 'http://localhost'
+    return location.origin
   }
 })()
 /**
