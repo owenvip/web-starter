@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import md5 from 'blueimp-md5'
 import { MD5_SALT } from '@/config'
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
@@ -16,6 +16,8 @@ const rules = {
   ],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 }
+
+const form = ref<any>(null)
 
 const LoginForm = defineComponent({
   data: function () {
@@ -42,24 +44,38 @@ const LoginForm = defineComponent({
   },
   methods: {
     ...mapActions('auth', ['userLogin']),
-    async handleFormFinish() {
-      this.loading = true
-      const data = {
-        account: this.formData.account,
-        password: md5(this.formData.password + MD5_SALT).toString(),
-      }
-      await this.userLogin(data)
-      this.loading = false
+    handleFormFinish() {
+      form.value.validate(async (valid: boolean) => {
+        this.loading = true
+        console.log(111, valid)
+        if (valid) {
+          const data = {
+            account: this.formData.account,
+            password: md5(this.formData.password + MD5_SALT).toString(),
+          }
+          await this.userLogin(data)
+        }
+        this.loading = false
+      })
     },
   },
   render() {
     return (
-      <ElForm class={styles.loginForm} rules={rules} model={this.formData}>
+      <ElForm
+        ref={form}
+        class={styles.loginForm}
+        rules={rules}
+        model={this.formData}
+      >
         <ElFormItem prop="account">
-          <ElInput placeholder="手机号码" />
+          <ElInput placeholder="手机号码" v-model={this.formData.account} />
         </ElFormItem>
         <ElFormItem prop="password">
-          <ElInput show-password placeholder="密码" />
+          <ElInput
+            v-model={this.formData.password}
+            show-password
+            placeholder="密码"
+          />
         </ElFormItem>
         <ElButton
           size="large"

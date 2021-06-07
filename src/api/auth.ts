@@ -1,22 +1,39 @@
-import { ReqBody } from '@otools/request'
 import request from '@/utils/request'
 import { authHost } from '@/config'
-import { stringify } from 'qs'
+// import { stringify } from 'qs'
+import { LoginParam } from '@/interfaces/user'
+
+// /**
+//  * 用户登录
+//  *
+//  * @export
+//  * @param {LoginParam} body
+//  * @returns {Promise<Token>}
+//  */
+// export async function userLogin(body: LoginParam): Promise<{ token: string }> {
+//   const res = await request.post<{ token: string }>(`${authHost}/auth.json`, {
+//     body: stringify(body),
+//     headers: {
+//       Authorization: null,
+//       'Content-Type': 'application/x-www-form-urlencoded',
+//     },
+//   })
+//   return res
+// }
 
 /**
- * 用户登录
+ * 测试用户登录
  *
  * @export
- * @param {LoginParam} body
+ * @param {LoginParam} params
  * @returns {Promise<Token>}
  */
-export async function userLogin(body: ReqBody) {
-  const res = await request.post(`${authHost}/auth/api/sysmgr/sso/login`, {
-    body: stringify(body),
+export function userLogin(params: LoginParam): Promise<{ token: string }> {
+  return request.get(`${authHost}/auth.json`, {
+    query: { params },
     headers: {
       Authorization: null,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
   })
-  return res
 }

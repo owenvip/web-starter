@@ -2,8 +2,10 @@ import Request, { Res } from '@otools/request'
 import isNil from 'lodash/isNil'
 import { appHost } from '@/config'
 import auth from './auth'
+
 const NO_AUTH_ERROR = new Error('登录失效，请重新登录')
 const UNKNOWN_ERROR = new Error('未知错误')
+
 const request = new Request({
   baseURL: appHost,
   headers: {
@@ -15,12 +17,12 @@ const request = new Request({
       if (!auth.isLogin) {
         throw NO_AUTH_ERROR
       }
-      const authorization = auth.getAuthorization()
+      const authorization = auth.getToken()
       headers.Authorization = authorization
       req.headers = headers
     }
     if (req.headers) {
-      Object.keys(req.headers).map((key) => {
+      Object.keys(req.headers).forEach((key) => {
         if (req.headers && !req.headers[key]) {
           delete req.headers[key]
         }
@@ -28,7 +30,7 @@ const request = new Request({
     }
     return req
   },
-  afterRequest: (res: Res) => {
+  afterRequest: (res: Res<any>) => {
     const { data, status } = res
     if (status === 401 || status === 403) {
       throw res
@@ -57,4 +59,5 @@ const request = new Request({
     return res
   },
 })
+
 export default request
