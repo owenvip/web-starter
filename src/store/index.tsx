@@ -1,7 +1,7 @@
 import React, { createContext, useContext, ReactChild } from 'react'
 import { observer } from 'mobx-react-lite'
-import user from './modules/user'
 import auth from './modules/auth'
+import user from './modules/user'
 import counter from './modules/counter'
 
 const StoreContext = createContext<any>(null)

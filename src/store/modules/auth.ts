@@ -7,6 +7,10 @@ import { LoginParam } from '@/interfaces/user'
 const Auth = () => {
   const store = useLocalObservable(() => ({
     isLogin: auth.isLogin,
+    userLogout() {
+      auth.setToken('')
+      this.isLogin = false
+    },
     async fetchAuth(params: LoginParam) {
       try {
         const { token } = await userLogin(params)
@@ -15,10 +19,7 @@ const Auth = () => {
           this.isLogin = true
         })
       } catch (error) {
-        auth.setToken('')
-        runInAction(() => {
-          this.isLogin = false
-        })
+        this.userLogout()
       }
     },
   }))
