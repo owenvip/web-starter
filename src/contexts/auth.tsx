@@ -1,8 +1,9 @@
 import React, { createContext, FC, useState, useCallback } from 'react'
 import noop from 'lodash/noop'
 import auth from '@/utils/auth'
-import { userLogin, LoginParam } from '@/api/auth'
+import { userLogin } from '@/api/auth'
 import { message } from 'antd'
+import { LoginParam } from '@/interfaces'
 
 interface AuthContextValue {
   isLogin: boolean

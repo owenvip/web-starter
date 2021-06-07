@@ -27,8 +27,10 @@ export class Auth {
   }
 
   public setToken = (token: string) => {
-    localStorage.setItem(Auth.TOKEN_KEY, token)
-    this.exptime = Number(token.split('-')[1])
+    const now = Date.now()
+    this.exptime = now
+    this.token = token
+    localStorage.setItem(Auth.TOKEN_KEY, `${token}-${now}`)
   }
 
   public getToken = () => this.token
