@@ -1,5 +1,5 @@
 {
-  "name": "react-demo",
+  "name": "web-starter",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owenvip/vue-demo.git"
+    "url": "git+https://github.com/owenvip/web-starter.git"
   },
   "keywords": [
     "react",
@@ -21,7 +21,7 @@
   ],
   "author": "owenwong <owen.cq.cn@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/owenvip/vue-demo#readme",
+  "homepage": "https://github.com/owenvip/web-starter#readme",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@otools/request": "^0.0.1",
