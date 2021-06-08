@@ -1,5 +1,5 @@
 {
-  "name": "vue-demo",
+  "name": "web-starter",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owenvip/vue-demo.git"
+    "url": "git+https://github.com/owenvip/web-starter.git"
   },
   "keywords": [
     "vue",
@@ -21,7 +21,7 @@
   ],
   "author": "owenwong <owen.cq.cn@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/owenvip/vue-demo#readme",
+  "homepage": "https://github.com/owenvip/web-starter#readme",
   "dependencies": {
     "@otools/request": "^0.0.1",
     "blueimp-md5": "^2.18.0",

@@ -2,7 +2,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/home'),
+    component: () => import('@/views/home/index.vue'),
     meta: {
       auth: true,
       title: 'Dashboard',
