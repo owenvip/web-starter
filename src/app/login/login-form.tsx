@@ -37,25 +37,26 @@ const LoginForm = defineComponent({
       }
     },
   },
-  beforeMount() {
-    if (this.isLogin) {
-      this.$router.replace('/')
-    }
-  },
+  // beforeMount() {
+  //   if (this.isLogin) {
+  //     this.$router.replace('/')
+  //   }
+  // },
   methods: {
     ...mapActions('auth', ['userLogin']),
     handleFormFinish() {
       form.value.validate(async (valid: boolean) => {
         this.loading = true
-        console.log(111, valid)
         if (valid) {
           const data = {
             account: this.formData.account,
             password: md5(this.formData.password + MD5_SALT).toString(),
           }
           await this.userLogin(data)
+          this.loading = false
+        } else {
+          this.loading = false
         }
-        this.loading = false
       })
     },
   },
