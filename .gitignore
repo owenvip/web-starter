@@ -61,10 +61,6 @@ typings
 # webpack build
 build
 
-# ignored lock files, you can comment this to remove
-package-lock.json
-yarn.lock
-
 #ide setting
 .idea
 .history
