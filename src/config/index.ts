@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: app environment configuration
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 15:18:45
+ */
 /**
  * 开发环境
  * @exports

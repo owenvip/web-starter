@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: login form
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 16:44:24
+ */
 import { defineComponent, ref } from 'vue'
 import md5 from 'blueimp-md5'
 import { MD5_SALT } from '@/config'

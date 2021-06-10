@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: auth util
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 15:18:45
+ */
 export class Auth {
   public static TOKEN_KEY = 'TOKEN'
 

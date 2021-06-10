@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: auth module
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 16:44:24
+ */
 import { MutationTree, ActionTree } from 'vuex'
 import { userLogin } from '@/api/auth'
 import auth from '@/utils/auth'

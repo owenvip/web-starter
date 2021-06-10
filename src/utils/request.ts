@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: request util
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 15:18:45
+ */
 import Request, { Res } from '@otools/request'
 import isNil from 'lodash/isNil'
 import { appHost } from '@/config'

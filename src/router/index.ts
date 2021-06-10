@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: router entry
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 16:44:24
+ */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes'
 

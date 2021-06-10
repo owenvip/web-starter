@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: authentication
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 15:18:45
+ */
 import { computed, defineComponent, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'

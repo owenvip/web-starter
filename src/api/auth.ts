@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: login request
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 15:18:45
+ */
 import request from '@/utils/request'
 import { authHost } from '@/config'
 // import { stringify } from 'qs'
@@ -26,7 +32,7 @@ import { LoginParam } from '@/interfaces/user'
  *
  * @export
  * @param {LoginParam} params
- * @returns {Promise<Token>}
+ * @returns {Promise<string>}
  */
 export function userLogin(params: LoginParam): Promise<{ token: string }> {
   return request.get(`${authHost}/auth.json`, {

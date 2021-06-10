@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: user module
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 16:44:24
+ */
 import { MutationTree, ActionTree } from 'vuex'
 import { fetchUserInfo } from '@/api/user'
 
@@ -19,7 +25,9 @@ const actions: ActionTree<State, State> = {
     try {
       const user = await fetchUserInfo(userId)
       commit('setUser', user)
-    } catch (error) {}
+    } catch (error) {
+      // silence
+    }
   },
 }
 export default {

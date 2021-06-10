@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: left side menu
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 16:44:24
+ */
 import { defineComponent } from 'vue'
 import { ElAside, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
 import { RouteRecordNormalized } from 'vue-router'
@@ -44,7 +50,6 @@ const SliderMenu = defineComponent({
   render() {
     const pathname = this.$router.currentRoute.value.path
     const routes = this.$router.getRoutes()
-    // const history = useHistory()
     const flattenedRoutes = flattenRoutes(routes)
     const menu = renderMenuItems(routes)
     const handleMenuItemClick = (path: string) => {

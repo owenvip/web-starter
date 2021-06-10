@@ -1,3 +1,9 @@
+/*
+ * @Descripttion: user request
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 15:18:45
+ */
 import request from '@/utils/request'
 import { authHost } from '@/config'
 import { User } from '@/interfaces/user'
