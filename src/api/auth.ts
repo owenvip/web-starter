@@ -7,7 +7,7 @@
 import request from '@/utils/request'
 import { authHost } from '@/config'
 // import { stringify } from 'qs'
-import { LoginParam } from '@/interfaces/user'
+import type { LoginParam } from '@/interfaces/user'
 
 // /**
 //  * 用户登录

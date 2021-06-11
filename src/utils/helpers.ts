@@ -4,7 +4,7 @@
  * @Email: owen.cq.cn@gmail.com
  * @Date: 2021-06-08 16:44:24
  */
-import { LooseMap } from '@/interfaces/constants'
+import type { LooseMap } from '@/interfaces/constants'
 
 /**
  * remove undefined from nested object

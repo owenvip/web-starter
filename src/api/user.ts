@@ -6,7 +6,7 @@
  */
 import request from '@/utils/request'
 import { authHost } from '@/config'
-import { User } from '@/interfaces/user'
+import type { User } from '@/interfaces/user'
 
 /**
  * 获取用户信息
