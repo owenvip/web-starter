@@ -1,3 +1,9 @@
+<!--
+ * @Descripttion: 
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-06-08 16:44:24
+-->
 <template>
   <div>
     <ElBadge :value="state.value" class="item" type="warning">
@@ -9,10 +15,6 @@
 import { defineComponent, reactive } from 'vue'
 import { ElButton, ElBadge } from 'element-plus'
 
-type State = {
-  value: number
-}
-
 export default defineComponent({
   name: 'Home',
   components: {
@@ -20,10 +22,10 @@ export default defineComponent({
     ElBadge,
   },
   setup() {
-    const state = reactive<State>({
+    const state = reactive({
       value: 1,
     })
-    const handleClick = (): void => {
+    const handleClick = () => {
       state.value++
     }
     return {
