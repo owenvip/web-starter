@@ -7,7 +7,6 @@
 import request from '@/utils/request'
 import { authHost } from '@/config'
 // import { stringify } from 'qs'
-import type { LoginParam } from '@/interfaces/user'
 
 // /**
 //  * 用户登录
@@ -16,8 +15,8 @@ import type { LoginParam } from '@/interfaces/user'
 //  * @param {LoginParam} body
 //  * @returns {Promise<Token>}
 //  */
-// export async function userLogin(body: LoginParam): Promise<{ token: string }> {
-//   const res = await request.post<{ token: string }>(`${authHost}/auth.json`, {
+// export async function userLogin(body) {
+//   const res = await request.post<{ token }>(`${authHost}/auth.json`, {
 //     body: stringify(body),
 //     headers: {
 //       Authorization: null,
@@ -34,7 +33,7 @@ import type { LoginParam } from '@/interfaces/user'
  * @param {LoginParam} params
  * @returns {Promise<string>}
  */
-export function userLogin(params: LoginParam): Promise<{ token: string }> {
+export function userLogin(params) {
   return request.get(`${authHost}/auth.json`, {
     query: { params },
     headers: {

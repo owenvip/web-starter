@@ -4,7 +4,6 @@
  * @Email: owen.cq.cn@gmail.com
  * @Date: 2021-06-08 16:44:24
  */
-import type { LooseMap } from '@/interfaces/constants'
 
 /**
  * remove undefined from nested object
@@ -14,7 +13,7 @@ import type { LooseMap } from '@/interfaces/constants'
  * @param {T} obj
  * @returns {T}
  */
-export function removeUndefined<T extends LooseMap>(obj: T): T {
+export function removeUndefined(obj) {
   Object.entries(obj).forEach(([key, value]) => {
     if (typeof value === 'object' && !Array.isArray(value)) {
       removeUndefined(value)

@@ -4,7 +4,7 @@
  * @Email: owen.cq.cn@gmail.com
  * @Date: 2021-06-08 15:18:45
  */
-import Request, { Res } from '@otools/request'
+import Request from '@otools/request'
 import isNil from 'lodash/isNil'
 import { appHost } from '@/config'
 import auth from './auth'
@@ -36,7 +36,7 @@ const request = new Request({
     }
     return req
   },
-  afterRequest: (res: Res<any>) => {
+  afterRequest: (res) => {
     const { data, status } = res
     if (status === 401 || status === 403) {
       throw res

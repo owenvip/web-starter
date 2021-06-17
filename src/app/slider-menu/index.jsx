@@ -6,20 +6,18 @@
  */
 import { defineComponent } from 'vue'
 import { ElAside, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
-import { RouteRecordNormalized } from 'vue-router'
 import flattenRoutes from '@/utils/flatten-routes'
 
-function getKeyByPath(path: [] | string) {
+function getKeyByPath(path) {
   return Array.isArray(path) && path.length ? path[0] : path
 }
-function renderMenuItems(routes: RouteRecordNormalized[] = []) {
+function renderMenuItems(routes = []) {
   return routes
     .map((route) => {
       const { path, meta, children = [] } = route
       const { visible = true, title, icon } = meta
       const key = getKeyByPath(path)
-      // @ts-ignore
-      const visibleChildRoutes: any = children.filter(({ props = {} }) => {
+      const visibleChildRoutes = children.filter(({ props = {} }) => {
         const { visible = true } = props
         return visible
       })
@@ -52,7 +50,7 @@ const SliderMenu = defineComponent({
     const routes = this.$router.getRoutes()
     const flattenedRoutes = flattenRoutes(routes)
     const menu = renderMenuItems(routes)
-    const handleMenuItemClick = (path: string) => {
+    const handleMenuItemClick = (path) => {
       if (pathname !== path) {
         this.$router.push(path)
       }

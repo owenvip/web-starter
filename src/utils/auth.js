@@ -5,11 +5,11 @@
  * @Date: 2021-06-08 15:18:45
  */
 export class Auth {
-  public static TOKEN_KEY = 'TOKEN'
+  static TOKEN_KEY = 'TOKEN'
 
-  private token = ''
+  token = ''
 
-  public exptime?: number
+  exptime
 
   constructor() {
     this.token = localStorage.getItem(Auth.TOKEN_KEY) || ''
@@ -18,7 +18,7 @@ export class Auth {
     }
   }
 
-  public get isLogin(): boolean {
+  get isLogin() {
     if (!this.token) {
       return false
     }
@@ -32,7 +32,7 @@ export class Auth {
     return true
   }
 
-  public setToken = (token: string) => {
+  setToken = (token) => {
     const now = Date.now()
     this.exptime = now
     this.token = token
@@ -41,7 +41,7 @@ export class Auth {
     }
   }
 
-  public getToken = () => this.token
+  getToken = () => this.token
 }
 
 const auth = new Auth()

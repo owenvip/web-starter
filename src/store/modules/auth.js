@@ -4,24 +4,19 @@
  * @Email: owen.cq.cn@gmail.com
  * @Date: 2021-06-08 16:44:24
  */
-import { MutationTree, ActionTree } from 'vuex'
 import { userLogin } from '@/api/auth'
 import auth from '@/utils/auth'
 
-type State = {
-  isLogin: boolean
-}
-
-const state: State = {
+const state = {
   isLogin: auth.isLogin,
 }
-const mutations: MutationTree<State> = {
+const mutations = {
   updateAuth: (state, payload) => {
     state.isLogin = payload
   },
 }
 const getters = {}
-const actions: ActionTree<State, State> = {
+const actions = {
   userLogin: async ({ commit }, params) => {
     try {
       const { token } = await userLogin(params)

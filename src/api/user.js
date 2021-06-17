@@ -6,7 +6,6 @@
  */
 import request from '@/utils/request'
 import { authHost } from '@/config'
-import type { User } from '@/interfaces/user'
 
 /**
  * 获取用户信息
@@ -15,7 +14,7 @@ import type { User } from '@/interfaces/user'
  * @param {string} userId
  * @returns {Promise<User>}
  */
-export function fetchUserInfo(userId: string): Promise<User> {
+export function fetchUserInfo(userId) {
   return request.get(`${authHost}/api/user`, {
     query: { userId },
   })

@@ -4,12 +4,8 @@
  * @Email: owen.cq.cn@gmail.com
  * @Date: 2021-06-08 16:44:24
  */
-import { RouteRecordRaw } from 'vue-router'
 
-const flattenRoutes = (
-  routes: RouteRecordRaw[],
-  store: RouteRecordRaw[] = []
-) => {
+const flattenRoutes = (routes, store = []) => {
   routes.forEach((route) => {
     store.push(route)
     if (Array.isArray(route.children)) {

@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack  --progress",
     "test": "jest",
     "lint:style": "stylelint ./src/**/*.less --fix",
-    "lint": "eslint . --ext=.js,.jsx,.ts,.tsx,.vue --fix",
+    "lint": "eslint . --ext=.js,.jsx,.vue --fix",
     "precommit": "lint-staged"
   },
   "repository": {
@@ -16,8 +16,7 @@
     "url": "git+https://github.com/owenvip/web-starter.git"
   },
   "keywords": [
-    "vue",
-    "typescript"
+    "vue"
   ],
   "author": "owenwong <owen.cq.cn@gmail.com>",
   "license": "ISC",
@@ -34,8 +33,6 @@
   },
   "devDependencies": {
     "@otools/compile-tools": "^0.0.12",
-    "@types/blueimp-md5": "^2.18.0",
-    "@types/qs": "^6.9.6",
     "babel-plugin-import": "^1.13.3",
     "core-js": "^3.14.0",
     "cross-env": "^7.0.3",
@@ -43,7 +40,7 @@
     "lint-staged": "^11.0.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,vue}": [
+    "src/**/*.{js,jsx,vue}": [
       "eslint --fix"
     ],
     "src/**/*..{css,less}": [
