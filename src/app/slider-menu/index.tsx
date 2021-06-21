@@ -18,11 +18,12 @@ function renderMenuItems(routes: RouteRecordNormalized[] = []) {
       const { path, meta, children = [] } = route
       const { visible = true, title, icon } = meta
       const key = getKeyByPath(path)
-      // @ts-ignore
-      const visibleChildRoutes: any = children.filter(({ props = {} }) => {
-        const { visible = true } = props
-        return visible
-      })
+      const visibleChildRoutes = (children as RouteRecordNormalized[]).filter(
+        ({ props = {} }) => {
+          const { visible = true } = props
+          return visible
+        }
+      )
       if (visible) {
         const el = (
           <>
