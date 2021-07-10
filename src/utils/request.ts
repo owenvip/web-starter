@@ -36,7 +36,7 @@ const request = new Request({
     }
     return req
   },
-  afterRequest: (res: Res<any>) => {
+  afterRequest: (res: Res) => {
     const { data, status } = res
     if (status === 401 || status === 403) {
       throw res

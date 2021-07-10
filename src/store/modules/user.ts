@@ -8,7 +8,7 @@ import { MutationTree, ActionTree } from 'vuex'
 import { fetchUserInfo } from '@/api/user'
 
 type State = {
-  [key: string]: any
+  users: any
 }
 
 const state: State = {
