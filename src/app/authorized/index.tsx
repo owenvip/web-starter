@@ -1,3 +1,9 @@
+/*
+ * @Descripttion:
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-07-10 14:46:54
+ */
 import React, { FC, useEffect } from 'react'
 import { RouteConfig } from '@/interfaces/route'
 import { useHistory } from 'react-router'
