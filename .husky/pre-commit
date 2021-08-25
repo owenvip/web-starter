@@ -1,4 +1,10 @@
+###
+ # @Descripttion: 
+ # @Author: OwenWong
+ # @Email: owen.cq.cn@gmail.com
+ # @Date: 2021-07-12 15:20:13
+### 
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run precommit
+npx --no-install lint-staged

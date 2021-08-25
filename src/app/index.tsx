@@ -1,7 +1,7 @@
 import React, { ComponentType, FC, Suspense } from 'react'
 import { Redirect, Route, HashRouter, Switch } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.css'
 import zhCN from 'antd/lib/locale/zh_CN'
 import flattenRoutes from '@/utils/flatten-routes'
 import Authorized from './authorized'
