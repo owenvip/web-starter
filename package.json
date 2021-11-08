@@ -40,7 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
-    "@otools/compile-tools": "^0.0.12",
+    "@otools/compile-tools": "^0.0.14",
     "@types/blueimp-md5": "^2.18.0",
     "@types/lodash": "^4.14.175",
     "@types/qs": "^6.9.7",
