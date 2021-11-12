@@ -23,7 +23,7 @@ const rules = {
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 }
 
-const form = ref < any > null
+const form = ref()
 
 const LoginForm = defineComponent({
   data: function () {
@@ -51,7 +51,7 @@ const LoginForm = defineComponent({
   methods: {
     ...mapActions('auth', ['userLogin']),
     handleFormFinish() {
-      form.value.validate(async (valid) => {
+      form?.value.validate(async (valid) => {
         this.loading = true
         if (valid) {
           const data = {

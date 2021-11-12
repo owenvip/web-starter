@@ -12,7 +12,7 @@ import { authHost } from '@/config'
  *
  * @export
  * @param {string} userId
- * @returns {Promise<User>}
+ * @returns {Promise<Object>}
  */
 export function fetchUserInfo(userId) {
   return request.get(`${authHost}/api/user`, {

@@ -6,31 +6,12 @@
  */
 import request from '@/utils/request'
 import { authHost } from '@/config'
-// import { stringify } from 'qs'
-
-// /**
-//  * 用户登录
-//  *
-//  * @export
-//  * @param {LoginParam} body
-//  * @returns {Promise<Token>}
-//  */
-// export async function userLogin(body) {
-//   const res = await request.post<{ token }>(`${authHost}/auth.json`, {
-//     body: stringify(body),
-//     headers: {
-//       Authorization: null,
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//     },
-//   })
-//   return res
-// }
 
 /**
  * 测试用户登录
  *
  * @export
- * @param {LoginParam} params
+ * @param {Object} params
  * @returns {Promise<string>}
  */
 export function userLogin(params) {

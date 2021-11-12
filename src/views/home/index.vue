@@ -2,7 +2,7 @@
  * @Descripttion: 
  * @Author: OwenWong
  * @Email: owen.cq.cn@gmail.com
- * @Date: 2021-06-08 16:44:24
+ * @Date: 2021-11-09 00:14:04
 -->
 <template>
   <div>
@@ -11,7 +11,7 @@
     </ElBadge>
   </div>
 </template>
-<script lang="ts">
+<script>
 import { defineComponent, reactive } from 'vue'
 import { ElButton, ElBadge } from 'element-plus'
 
