@@ -24,7 +24,7 @@
   "dependencies": {
     "@otools/request": "^0.2.0",
     "blueimp-md5": "^2.19.0",
-    "element-plus": "^1.0.2-beta.55",
+    "element-plus": "1.0.2-beta.55",
     "lodash": "^4.17.21",
     "qs": "^6.10.1",
     "vue": "^3.0.11",
