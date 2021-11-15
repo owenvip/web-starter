@@ -13,14 +13,9 @@
 </template>
 <script>
 import { defineComponent, reactive } from 'vue'
-import { ElButton, ElBadge } from 'element-plus'
 
 export default defineComponent({
   name: 'Home',
-  components: {
-    ElButton,
-    ElBadge,
-  },
   setup() {
     const state = reactive({
       value: 1,
