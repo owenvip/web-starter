@@ -10,6 +10,7 @@ import SliderMenu from '../slider-menu/index'
 import styles from './index.module.less'
 
 export default defineComponent({
+  name: 'Layout',
   render() {
     const { hideHeader, hideSlider } = this.$route.meta
     return (

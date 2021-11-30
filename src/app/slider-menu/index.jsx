@@ -44,6 +44,7 @@ function renderMenuItems(routes = []) {
     .filter((v) => v)
 }
 const SliderMenu = defineComponent({
+  name: 'SliderMenu',
   props: ['width'],
   render() {
     const pathname = this.$router.currentRoute.value.path

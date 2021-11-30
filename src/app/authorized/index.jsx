@@ -8,6 +8,7 @@ import { computed, defineComponent, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 const Authorized = defineComponent({
+  name: 'Authorized',
   setup(props, ctx) {
     const store = useStore()
     const route = useRoute()

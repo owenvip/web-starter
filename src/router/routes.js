@@ -23,6 +23,7 @@ const routes = [
       auth: true,
       title: '示例',
       icon: 'el-icon-menu',
+      keepAlive: true,
     },
   },
 ]

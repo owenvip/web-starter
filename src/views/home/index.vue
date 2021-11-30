@@ -12,22 +12,18 @@
   </div>
 </template>
 <script>
-import { defineComponent, reactive } from 'vue'
-
-export default defineComponent({
+export default {
   name: 'Home',
-  setup() {
-    const state = reactive({
-      value: 1,
-    })
-    const handleClick = () => {
-      state.value++
-    }
-    return {
-      state,
-      handleClick,
-    }
-  },
-})
+}
 </script>
+<script setup>
+import { reactive } from 'vue'
+const state = reactive({
+  value: 1,
+})
+const handleClick = () => {
+  state.value++
+}
+</script>
+
 <style lang="less" scoped></style>
