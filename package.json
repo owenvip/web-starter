@@ -24,7 +24,7 @@
     "@otools/request": "^0.2.0",
     "babel-loader": "^8.2.3",
     "blueimp-md5": "^2.19.0",
-    "element-plus": "1.2.0-beta.5",
+    "element-plus": "^1.2.0-beta.5",
     "lodash": "^4.17.21",
     "qs": "^6.10.2",
     "vue": "^3.2.23",
