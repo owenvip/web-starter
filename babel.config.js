@@ -4,6 +4,7 @@
  * @Email: owen.cq.cn@gmail.com
  * @Date: 2021-06-17 19:51:04
  */
+
 module.exports = {
   presets: [
     [
@@ -31,15 +32,6 @@ module.exports = {
         helpers: true,
         useESModules: false,
         regenerator: true,
-      },
-    ],
-    [
-      'import',
-      {
-        libraryName: 'element-plus',
-        customStyleName: (name) => {
-          return `element-plus/lib/theme-chalk/${name}.css`
-        },
       },
     ],
   ],

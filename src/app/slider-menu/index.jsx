@@ -5,7 +5,7 @@
  * @Date: 2021-06-08 16:44:24
  */
 import { defineComponent } from 'vue'
-import { ElAside, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
+import { ElAside, ElMenu, ElSubMenu, ElMenuItem } from 'element-plus'
 import flattenRoutes from '@/utils/flatten-routes'
 
 function getKeyByPath(path) {
@@ -30,9 +30,9 @@ function renderMenuItems(routes = []) {
         )
         if (visibleChildRoutes.length) {
           return (
-            <ElSubmenu index={key} title={el}>
+            <ElSubMenu index={key} title={el}>
               {renderMenuItems(visibleChildRoutes)}
-            </ElSubmenu>
+            </ElSubMenu>
           )
         } else {
           return <ElMenuItem index={key}>{el}</ElMenuItem>

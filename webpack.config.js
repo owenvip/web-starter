@@ -6,10 +6,14 @@
  */
 const configs = require('@otools/compile-tools')
 const Components = require('unplugin-vue-components/webpack')
+const ElementPlus = require('unplugin-element-plus/webpack').default
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 configs.module.rules.find(({ test }) => test.test('.ts')).use.pop()
 configs.plugins.push(
+  ElementPlus({
+    useSource: false,
+  }),
   Components({
     resolvers: [ElementPlusResolver()],
   })
