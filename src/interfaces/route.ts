@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { RouteProps } from 'react-router'
 
 export interface RouteMeta {

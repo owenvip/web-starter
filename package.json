@@ -24,36 +24,35 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@otools/request": "^0.2.0",
-    "antd": "^4.16.13",
+    "antd": "^4.17.3",
     "blueimp-md5": "^2.19.0",
     "lodash": "^4.17.21",
-    "mobx": "^6.3.5",
-    "mobx-react-lite": "^3.2.1",
+    "mobx": "^6.3.8",
+    "mobx-react-lite": "^3.2.2",
     "path-to-regexp": "^6.2.0",
-    "qs": "^6.10.1",
+    "qs": "^6.10.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.5",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.1",
-    "@commitlint/config-conventional": "^13.2.0",
-    "@otools/compile-tools": "^0.0.14",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@otools/compile-tools": "^0.0.22",
     "@types/blueimp-md5": "^2.18.0",
-    "@types/lodash": "^4.14.175",
+    "@types/lodash": "^4.14.178",
     "@types/qs": "^6.9.7",
-    "@types/react": "^17.0.30",
-    "@types/react-dom": "^17.0.10",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
     "@types/react-router": "^5.1.17",
-    "@types/react-router-dom": "^5.3.1",
+    "@types/react-router-dom": "^5.3.2",
     "@types/webpack-env": "^1.16.3",
     "babel-plugin-import": "^1.13.3",
-    "core-js": "^3.18.3",
+    "core-js": "^3.19.3",
     "cross-env": "^7.0.3",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.2.3"
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
@@ -76,11 +75,6 @@
     "last 2 versions",
     "not dead"
   ],
-  "eslintConfig": {
-    "extends": [
-      "@otools/eslint-config-otool"
-    ]
-  },
   "prettier": "@otools/prettier-config-otool",
   "stylelint": {
     "extends": [

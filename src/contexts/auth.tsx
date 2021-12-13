@@ -1,3 +1,9 @@
+/*
+ * @Description:
+ * @Author: OwenWong
+ * @Email: owen.cq.cn@gmail.com
+ * @Date: 2021-12-13 11:50:51
+ */
 import React, { createContext, FC, useState, useCallback } from 'react'
 import noop from 'lodash/noop'
 import auth from '@/utils/auth'
@@ -27,7 +33,7 @@ const AuthContextProvider: FC = ({ children }) => {
       setIsLogin(true)
       message.success('登录成功')
       return Promise.resolve(true)
-    } catch (error) {
+    } catch (error: any) {
       message.error(error.message || '登录失败')
       return Promise.resolve(false)
     }
