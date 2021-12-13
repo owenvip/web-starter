@@ -5,24 +5,21 @@
  * @Date: 2021-06-08 16:44:24
  */
 import { defineComponent } from 'vue'
-import { ElAside, ElMenu, ElSubmenu, ElMenuItem } from 'element-plus'
+import { ElAside, ElMenu, ElSubMenu, ElMenuItem } from 'element-plus'
 import { RouteRecordNormalized } from 'vue-router'
 import flattenRoutes from '@/utils/flatten-routes'
 
-function getKeyByPath(path: [] | string) {
+function getKeyByPath(path: unknown): string {
   return Array.isArray(path) && path.length ? path[0] : path
 }
-function renderMenuItems(routes: RouteRecordNormalized[] = []) {
+function renderMenuItems(routes: Array<RouteRecordNormalized>) {
   return routes
     .map((route) => {
       const { path, meta, children = [] } = route
       const { visible = true, title, icon } = meta
       const key = getKeyByPath(path)
-      const visibleChildRoutes = (children as RouteRecordNormalized[]).filter(
-        ({ props = {} }) => {
-          const { visible = true } = props
-          return visible
-        }
+      const visibleChildRoutes: any[] = children.filter(
+        ({ meta }) => meta?.visible
       )
       if (visible) {
         const el = (
@@ -33,9 +30,14 @@ function renderMenuItems(routes: RouteRecordNormalized[] = []) {
         )
         if (visibleChildRoutes.length) {
           return (
-            <ElSubmenu index={key} title={el}>
+            <ElSubMenu
+              index={key}
+              v-slots={{
+                title: el,
+              }}
+            >
               {renderMenuItems(visibleChildRoutes)}
-            </ElSubmenu>
+            </ElSubMenu>
           )
         } else {
           return <ElMenuItem index={key}>{el}</ElMenuItem>
@@ -53,7 +55,7 @@ const SliderMenu = defineComponent({
     const routes = this.$router.getRoutes()
     const flattenedRoutes = flattenRoutes(routes)
     const menu = renderMenuItems(routes)
-    const handleMenuItemClick = (path: string) => {
+    const handleMenuItemClick = (path: any) => {
       if (pathname !== path) {
         this.$router.push(path)
       }
